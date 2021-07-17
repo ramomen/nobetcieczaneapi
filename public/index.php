@@ -1,4 +1,6 @@
 <?php
+header('Content-type: application/json');
+
 function ara($bas, $son, $yazi)
     {
       @preg_match_all('/' . preg_quote($bas, '/') .
@@ -12,13 +14,13 @@ function ara($bas, $son, $yazi)
     $icerik = file_get_contents($link);
     $goster = ara('<span>','</span>',$icerik);
     
-    $eczane = [
-    "eczane" => $goster[12],
-     "Adres" => $goster[13],
-     "Telefon" =>$goster[14]
-    ]
-        
-        return json($eczane);
-   // echo '<h2> '.$goster[12].' Eczanesi<br/> Adres = '.$goster[13].' </br>  Telefon: '.$goster[14].'</h2>';
+    $eczane = array(
+      "eczane" => $goster[12],
+      "Adres" => $goster[13],
+      "Telefon" =>$goster[14]
+    );
+    
+  
+    echo json_encode( $eczane );
 
     ?>
